@@ -1,19 +1,17 @@
 import React, { useState, useEffect } from 'react';
 
-
-
 const MAX_SCORE = 20;
 const MIN_SCORE = 0;
 
 function generateRandomNumber() {
-    return Math.floor(Math.random() * 100) + 1;
+    return Math.floor(Math.random() * 20) + 1;
 }
 
 const message = "mensaje de tabla";
 
 export const GameApp = () => {
 
-    const [value, setValue] = useState(["?"])
+    const [value, setValue] = useState()
     
     const [winningNumber, setWinningNumber] = useState(generateRandomNumber());
     
@@ -23,15 +21,19 @@ export const GameApp = () => {
 
     const [message, setMessage] = useState('');
 
+    const [showNumber, setShowNumber] = useState(false);
+
     const handleInputChange = ({target}) =>{
         setValue(target.value)
     }
 
     const handleSubmit = ( e ) =>{
         e.preventDefault();
+        console.log(winningNumber)
         // setValue('')
         if (value === winningNumber) {
             setMessage('¡Número correcto!');
+            setShowNumber(true);
             setScore((prevScore) => Math.min(prevScore + 10, MAX_SCORE)); 
             setWinningNumber(generateRandomNumber()); 
         } else if(value > winningNumber){
@@ -43,7 +45,7 @@ export const GameApp = () => {
             setScore((prevScore) => prevScore - 1); 
         }
         
-        console.log(winningNumber)
+        
     
     }
 
@@ -80,7 +82,7 @@ export const GameApp = () => {
 
         <section className="bar-show-number-correct">
             
-            <p>{ value }</p>
+            <p>{ showNumber ? winningNumber : '?' }</p>
 
         </section>
 
