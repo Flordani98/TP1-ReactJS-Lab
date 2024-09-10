@@ -20,37 +20,53 @@ export const GameApp = () => {
     }
 
   return (
-    <>
-        <button>Reiniciar</button>
-        <h1>¡Adivinar el Número!</h1>
-        <p>{ value }</p>
-        
+    <div className='app-container'>
+        <header>
+            <button id='restart-button' className='button'>Reiniciar</button>
+            <h1>¡Adivinar el Número!</h1>
+
+        </header>
+
+
+        <section className="bar-show-number-correct">
+            
+            <p>{ value }</p>
+
+        </section>
+
+        <main>
+
         <form onSubmit={ handleSubmit }>
-        
+            
             <input
                 type="number"
                 value={value}
                 onChange={handleInputChange}
                 placeholder='Ingresa un número'
             />
-            <button type="submit">Probar</button>
+            <button className="submit-button" type="submit">Probar</button>
 
         </form>
         
-        <table className='game-info-table'>
-            <tbody>
-                <tr>
+        <table >
+            <tbody className='game-info-table'>
+                <tr >
                     <td>{ message }</td>
+                </tr>
+                <tr className='info-score'>
                     <td> {highscore} </td>
                     <td>{score} </td>
-
                 </tr>
             </tbody>
         </table>
     
+        </main>
+
+       
+ 
 
 
-    </>
+    </div>
   )
 }
 
